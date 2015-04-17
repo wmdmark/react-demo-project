@@ -1,32 +1,17 @@
 {
-  "name": "react-demo-project",
-  "version": "1.0.0",
-  "description": "A simple project to get started with React",
-  "main": "gulpfile.js",
+  "name": "react-demo",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wmdmark/react-demo-project.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/wmdmark/react-demo-project/issues"
-  },
-  "homepage": "https://github.com/wmdmark/react-demo-project",
-  "dependencies": {
-    "react": "^0.13.1"
-  },
   "devDependencies": {
-    "gulp": "^3.8.11",
-    "gulp-concat": "^2.5.2",
-    "gulp-order": "^1.1.1",
-    "gulp-react": "^3.0.1",
-    "gulp-sourcemaps": "^1.5.1",
-    "gulp-webserver": "^0.9.0",
-    "gulp-wrap-commonjs": "^0.1.13",
-    "reactify": "^1.1.0"
+    "gulp": "~3.8.11",
+    "gulp-react": "~3.0.1",
+    "gulp-webserver": "~0.9.0",
+    "gulp-sourcemaps": "~1.5.1"
   }
 }
