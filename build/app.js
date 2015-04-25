@@ -1,6 +1,6 @@
 var fbMessagesStore = new Firebase("https://wmdmark.firebaseio.com/wall")
 
-var WallMessageListItem = React.createClass({
+var WallMessageListItem = React.createClass({displayName: "WallMessageListItem",
 
   getInitialState: function() {
     return {
@@ -20,14 +20,14 @@ var WallMessageListItem = React.createClass({
     var message = this.props.message
     if (!this.state.isEditing) {
       return (
-        <li key={message.id} className="list-group-item clearfix">
-          {message.message}
-          <a href="#" className="btn btn-default pull-right" onClick={ this.onClickEdit } >Edit</a>
-        </li>
+        React.createElement("li", {key: message.id, className: "list-group-item clearfix"}, 
+          message.message, 
+          React.createElement("a", {href: "#", className: "btn btn-default pull-right", onClick:  this.onClickEdit}, "Edit")
+        )
       )
     } else {
       return(
-        <WallMessageForm message={message} onCancel={this.closeEdit} onSave={this.closeEdit} />
+        React.createElement(WallMessageForm, {message: message, onCancel: this.closeEdit, onSave: this.closeEdit})
       )
     }
   }
@@ -35,24 +35,24 @@ var WallMessageListItem = React.createClass({
 
 })
 
-var WallMessageList = React.createClass({
+var WallMessageList = React.createClass({displayName: "WallMessageList",
 
   renderMessage: function(message) {
     return(
-      <WallMessageListItem message={message} />
+      React.createElement(WallMessageListItem, {message: message})
     )
   },
 
   render: function() {
     var messageListItems = this.props.messages.map(this.renderMessage)
     return (
-      <ul className="list-group">{ messageListItems }</ul>
+      React.createElement("ul", {className: "list-group"},  messageListItems )
     )
   }
 
 })
  
-var WallMessageForm = React.createClass({
+var WallMessageForm = React.createClass({displayName: "WallMessageForm",
 
   getInitialState: function() {
     var state = { messageValue: "" }
@@ -99,20 +99,20 @@ var WallMessageForm = React.createClass({
   render: function() {
     var characterCount = this.state.messageValue.length;
     return (
-      <div>
-        <textarea className="form-control" rows="3" value={ this.state.messageValue } onChange={this.handleChange} />
-        <div>{ characterCount } characters</div>
-        <button className="btn btn-primary" onClick={this.saveMessage}>
-          { this.state.editMode ? "Save Message" : "Submit Message" }
-        </button>
-        { this.state.editMode ? <a href='#' onClick={ this.onCancelEdit }>Cancel</a> : "" }
-      </div>
+      React.createElement("div", null, 
+        React.createElement("textarea", {className: "form-control", rows: "3", value:  this.state.messageValue, onChange: this.handleChange}), 
+        React.createElement("div", null,  characterCount, " characters"), 
+        React.createElement("button", {className: "btn btn-primary", onClick: this.saveMessage}, 
+           this.state.editMode ? "Save Message" : "Submit Message"
+        ), 
+         this.state.editMode ? React.createElement("a", {href: "#", onClick:  this.onCancelEdit}, "Cancel") : ""
+      )
     )
   }
 
 })
 
-var Wall = React.createClass({
+var Wall = React.createClass({displayName: "Wall",
 
   //mixins: [ReactFireMixin],
 
@@ -139,22 +139,23 @@ var Wall = React.createClass({
   render: function() {
     var messages = this.state.messages
     return (
-      <div className='container'>
-        <h1>Welcome to my Wall</h1>
-        <hr />
-        <WallMessageForm />
-        <hr />
-        <WallMessageList messages={messages} />
-      </div>
+      React.createElement("div", {className: "container"}, 
+        React.createElement("h1", null, "Welcome to my Wall"), 
+        React.createElement("hr", null), 
+        React.createElement(WallMessageForm, null), 
+        React.createElement("hr", null), 
+        React.createElement(WallMessageList, {messages: messages})
+      )
     );
   }
 
 });
 
-var App = React.createClass({
+var App = React.createClass({displayName: "App",
   render: function() {
-    return <Wall/>
+    return React.createElement(Wall, null)
   }
 })
 
-React.render(<App/>, document.getElementById("app"))
+React.render(React.createElement(App, null), document.getElementById("app"))
+//# sourceMappingURL=app.js.map
