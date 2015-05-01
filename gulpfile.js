@@ -10,7 +10,7 @@ var del = require('del')
 var runSequence = require('gulp-run-sequence')
 
 var scriptsPath = ["./src/**/*.jsx", "./src/**/*.js"]
-var vendorPath = "./src/vendor/**/*.js"
+var vendorPath = ["./src/vendor/**/*.js"]
 
 gulp.task("build-scripts", function(){
   gulp.src(scriptsPath)

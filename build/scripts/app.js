@@ -149,7 +149,8 @@ module.exports = WallMessageList
 });
 
 require.register("components/WallMessageListItem", function(exports, require, module){
-  var WallMessageListItem = React.createClass({displayName: "WallMessageListItem",
+  var WallMessageForm = require("./WallMessageForm")
+var WallMessageListItem = React.createClass({displayName: "WallMessageListItem",
 
   getInitialState: function() {
     return {
@@ -185,11 +186,6 @@ require.register("components/WallMessageListItem", function(exports, require, mo
 })
 
 module.exports = WallMessageListItem
-  
-});
-
-require.register("stores/messages-store", function(exports, require, module){
-  module.exports = new Firebase("https://wmdmark.firebaseio.com/wall")
   
 });
 
@@ -291,6 +287,11 @@ require.register("vendor/commonjs-require", function(exports, require, module){
   });
 
 })();
+  
+});
+
+require.register("stores/messages-store", function(exports, require, module){
+  module.exports = new Firebase("https://wmdmark.firebaseio.com/wall")
   
 });
 

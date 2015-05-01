@@ -1,3 +1,4 @@
+var WallMessageForm = require("./WallMessageForm")
 var WallMessageListItem = React.createClass({
 
   getInitialState: function() {
