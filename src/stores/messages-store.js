@@ -1,0 +1,1 @@
+module.exports = new Firebase("https://wmdmark.firebaseio.com/wall")
