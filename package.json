@@ -24,6 +24,7 @@
   "dependencies": {
     "body-parser": "~1.12.3",
     "firebase": "~2.2.4",
-    "express": "~4.12.3"
+    "express": "~4.12.3",
+    "twilio": "~2.2.0"
   }
 }

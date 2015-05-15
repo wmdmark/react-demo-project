@@ -189,6 +189,11 @@ module.exports = WallMessageListItem
   
 });
 
+require.register("stores/messages-store", function(exports, require, module){
+  module.exports = new Firebase("https://wmdmark.firebaseio.com/wall")
+  
+});
+
 require.register("vendor/commonjs-require", function(exports, require, module){
   (function() {
 
@@ -287,11 +292,6 @@ require.register("vendor/commonjs-require", function(exports, require, module){
   });
 
 })();
-  
-});
-
-require.register("stores/messages-store", function(exports, require, module){
-  module.exports = new Firebase("https://wmdmark.firebaseio.com/wall")
   
 });
 
