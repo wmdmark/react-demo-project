@@ -11,7 +11,7 @@ fbMessagesStore = new Firebase("https://wmdmark.firebaseio.com/messages")
 storedMessages = []
 
 fbMessagesStore.on "value", (snapshot) ->
-  storedMessages = ["",]
+  storedMessages = []
   messages = snapshot.val()
   for key, message of messages
     storedMessages.push(message.message)
@@ -19,7 +19,13 @@ fbMessagesStore.on "value", (snapshot) ->
 getResponse = (message, callback)->
   response = null
   if message.toLowerCase() is "/list"
-    callback("\n#{storedMessages.join("\n - ")}")
+    if storedMessages.length > 0
+      callback("\n#{storedMessages.join("\n - ")}")
+    else
+      callback("list is empty!")
+  else if message.toLowerCase() is "/clear"
+    fbMessagesStore.remove()
+    callback("list removed!")
   else
     fbMessagesStore.push({message: message})
     callback(null)
