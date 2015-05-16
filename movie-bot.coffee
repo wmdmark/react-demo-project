@@ -18,17 +18,18 @@ fbMessagesStore.on "value", (snapshot) ->
 
 getResponse = (message, callback)->
   response = null
-  if message.toLowerCase() is "/list"
-    if storedMessages.length > 0
-      callback("\n#{storedMessages.join("\n - ")}")
+  switch message.toLowerCase()
+    when "/list"
+      if storedMessages.length > 0
+        response = "\n#{storedMessages.join("\n - ")}"
+      else
+        response = "list is empty!"
+    when "/clear"
+      fbMessagesStore.remove()
+      response = "list removed!"
     else
-      callback("list is empty!")
-  else if message.toLowerCase() is "/clear"
-    fbMessagesStore.remove()
-    callback("list removed!")
-  else
-    fbMessagesStore.push({message: message})
-    callback(null)
+      fbMessagesStore.push({message: message})
+  callback(response)
 
 # Twilio endpoint for incoming text messages
 app.use bodyParser.urlencoded(extended: false)
