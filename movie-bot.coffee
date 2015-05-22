@@ -3,7 +3,7 @@ app = express()
 bodyParser = require('body-parser')
 
 twilio = require('twilio')
-client = twilio('AC46ed918440964217855c56d44b42208e', '7104834987737a98b7f8e0136708ed89')
+client = twilio("<key>", "<token>")
 
 Firebase = require("firebase")
 fbMessagesStore = new Firebase("https://wmdmark.firebaseio.com/messages")
